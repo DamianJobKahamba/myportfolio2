@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donnie Store Tanzania</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Header Section -->
+    <header>
+      <div class="logo-container">
+        <img src="logo.jpg" alt="DonniestoreTZ Logo" class="logo" />
+      </div>
+      <h1 class="site-title">DONNIE STORE <span>TANZANIA</span></h1>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2 class="welcome-text">Karibu kwenye duka letu la Mtandaoni</h2>
+        <p class="tagline">Bidhaa bora na za kisasa mjini Dar es Salaam</p>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+      <div class="container">
+        <h2 class="section-title">Kuhusu Sisi</h2>
+        <p class="intro-text">
+          Karibuni sana Duka letu la DonniestoreTZ ujipatie bidhaa bora mjini Daslam. Tunapatikana Kariakoo mtaa wa Kongo na Narungombe. Ukishashuka mwendo kasi wa Msimbazi ukaingia mtaa wa Narungombe moja kwa moja hadi ghorofa la kwanza unakua ushafika.
+        </p>
+        <div class="location-info">
+          <h3>Mahali Tunapopatikana</h3>
+          <a href="https://maps.google.com" target="_blank" class="map-button">
+            <span class="map-icon">📍</span> Tuone kwenye Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+      <div class="container">
+        <h2 class="section-title">Bidhaa Zetu</h2>
+        <p class="products-intro">Angalia bidhaa zetu zilizopo dukani:</p>
+        
+        <!-- Carousel Section -->
+        <div class="carousel-wrapper">
+          <button class="nav left" aria-label="Previous product">&#10094;</button>
+          <div id="carousel">
+            <div id="imageTrack"></div>
+          </div>
+          <button class="nav right" aria-label="Next product">&#10095;</button>
+        </div>
+
+        <!-- Product Info Section -->
+        <div class="product-info-container">
+          <h3 class="product-info-title">Vipimo Vilivyopo</h3>
+          <div id="productInfo" class="product-info"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <h2 class="section-title">Wasiliana Nasi</h2>
+        <p class="contact-intro">Tuna furaha kukusaidia! Tupigie simu au tuandikie ujumbe kupitia:</p>
+        
+        <div class="social-links">
+          <a href="https://www.instagram.com/donnie_store_tz?igsh=MTI4cTR1aHVxbjZ2eA==" target="_blank" class="social-link">
+            <img src="instagram-icon.png" alt="Instagram" class="icon" /> Instagram
+          </a>
+          <a href="https://wa.me/255764669212" target="_blank" class="social-link2">
+            <img src="whatsapp-icon.png" alt="Whatsapp" class="icon2" /> Whatsapp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+      <div class="container">
+        <p class="copyright">© 2025 Donnie Store Tanzania. Haki zote zimehifadhiwa.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Script -->
+  <script>
+    window.onload = function () {
+      fetch("https://script.google.com/macros/s/AKfycbxdF9ug4RcdIU0RmRlB5IjdvQbn-ajCnYKSuOsUGFJwjbrwwLjrQdgBVannl1Xtuw7Qsw/exec" + "?t=" + new Date().getTime())
+        .then(res => res.json())
+        .then(data => {
+          const imageTrack = document.getElementById("imageTrack");
+          const info = document.getElementById("productInfo");
+          const carousel = document.getElementById("carousel");
+          const leftBtn = document.querySelector(".nav.left");
+          const rightBtn = document.querySelector(".nav.right");
+
+          // Create loading indicator
+          const loadingIndicator = document.createElement("div");
+          loadingIndicator.className = "loading-indicator";
+          loadingIndicator.innerHTML = "Inapakia bidhaa...";
+          imageTrack.appendChild(loadingIndicator);
+
+          // Process data
+          data.forEach((entry, index) => {
+            const img = document.createElement("img");
+            img.src = entry.ImageURL;
+            img.alt = "Product Image " + (index + 1);
+            img.dataset.index = index;
+            img.classList.add("carousel-img");
+            
+            // Add loading animation
+            img.onload = function() {
+              this.classList.add("loaded");
+            };
+            
+            imageTrack.appendChild(img);
+          });
+
+          // Remove loading indicator after images are added
+          imageTrack.removeChild(loadingIndicator);
+
+          const images = document.querySelectorAll(".carousel-img");
+          let currentIndex = 0;
+
+          function showProductInfo(entry) {
+            info.innerHTML = `
+              <div class="size-grid">
+                <div class="size-item">
+                  <span class="size-label">Small</span>
+                  <span class="size-value">${entry.Small} Pieces</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">Medium</span>
+                  <span class="size-value">${entry.Medium} Pieces</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">Large</span>
+                  <span class="size-value">${entry.Large} Pieces</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">XL</span>
+                  <span class="size-value">${entry.XL} Pieces</span>
+                </div>
+                <div class="size-item">
+                  <span class="size-label">XXL</span>
+                  <span class="size-value">${entry.XXL} Pieces</span>
+                </div>
+              </div>
+            `;
+          }
+
+          if (data.length > 0) {
+            showProductInfo(data[0]);
+          }
+
+          carousel.addEventListener("scroll", () => {
+            const scrollLeft = carousel.scrollLeft;
+            const imageWidth = images[0].offsetWidth + 16;
+            const newIndex = Math.round(scrollLeft / imageWidth);
+
+            if (newIndex !== currentIndex && data[newIndex]) {
+              currentIndex = newIndex;
+              showProductInfo(data[currentIndex]);
+              
+              // Update active state for images
+              images.forEach((img, idx) => {
+                if (idx === currentIndex) {
+                  img.classList.add("active");
+                } else {
+                  img.classList.remove("active");
+                }
+              });
+            }
+          });
+
+          leftBtn.addEventListener("click", () => {
+            if (currentIndex > 0) {
+              currentIndex--;
+              carousel.scrollTo({
+                left: currentIndex * (images[0].offsetWidth + 16),
+                behavior: "smooth"
+              });
+              showProductInfo(data[currentIndex]);
+              
+              // Update active state for images
+              images.forEach((img, idx) => {
+                if (idx === currentIndex) {
+                  img.classList.add("active");
+                } else {
+                  img.classList.remove("active");
+                }
+              });
+            }
+          });
+
+          rightBtn.addEventListener("click", () => {
+            if (currentIndex < data.length - 1) {
+              currentIndex++;
+              carousel.scrollTo({
+                left: currentIndex * (images[0].offsetWidth + 16),
+                behavior: "smooth"
+              });
+              showProductInfo(data[currentIndex]);
+              
+              // Update active state for images
+              images.forEach((img, idx) => {
+                if (idx === currentIndex) {
+                  img.classList.add("active");
+                } else {
+                  img.classList.remove("active");
+                }
+              });
+            }
+          });
+          
+          // Set first image as active
+          if (images.length > 0) {
+            images[0].classList.add("active");
+          }
+        })
+        .catch(err => {
+          console.error("Error loading data", err);
+          const imageTrack = document.getElementById("imageTrack");
+          imageTrack.innerHTML = `<div class="error-message">Samahani, kumekuwa na hitilafu katika kupakia data. Tafadhali jaribu tena baadaye.</div>`;
+        });
+    };
+  </script>
+</body>
+</html>
