@@ -175,7 +175,7 @@ h2.section-h .accent{ color: var(--red); }
   background: var(--card); border: 1px solid var(--card-line); border-radius: 10px;
   padding: 22px; text-decoration: none; color: var(--white); display: flex; align-items: center; gap: 14px;
   transition: border-color .15s, transform .15s;
-}
+}   
 .contact-card:hover{ border-color: var(--red); transform: translateY(-2px); }
 .contact-card .cic{
   width: 40px; height: 40px; border-radius: 50%; background: rgba(232,56,44,.12);
