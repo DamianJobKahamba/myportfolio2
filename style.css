@@ -170,10 +170,10 @@ h2.section-h .accent{ color: var(--red); }
 .service-card p{ color: var(--muted); font-size: .9rem; }
 
 /* ---- Contact ---- */
-.contact-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+.contact-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .contact-card{
   background: var(--card); border: 1px solid var(--card-line); border-radius: 10px;
-  padding: 36px 28px; text-decoration: none; color: var(--white);
+  padding: 26px 32px; text-decoration: none; color: var(--white);
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px;
   transition: border-color .15s, transform .15s;
 }
@@ -184,7 +184,7 @@ h2.section-h .accent{ color: var(--red); }
 }
 .contact-card .cic svg{ width: 22px; height: 22px; fill: var(--red); }
 .contact-card .clabel{ font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-.contact-card .cvalue{ font-weight: 600; font-size: 1.05rem; word-break: break-word; }
+.contact-card .cvalue{ font-weight: 600; font-size: 1.05rem; white-space: nowrap; }
 
 /* ---- Footer ---- */
 footer{ padding: 40px 0; border-top: 1px solid var(--card-line); }
@@ -213,6 +213,7 @@ footer{ padding: 40px 0; border-top: 1px solid var(--card-line); }
   .wrap{ padding: 0 22px; }
   section{ padding: 76px 0; }
   .services-grid{ grid-template-columns: 1fr; }
+  .contact-grid{ grid-template-columns: 1fr; }
   .project-card{ grid-template-columns: 1fr; }
   .hero-role{ font-size: 1.9rem; }
 }
